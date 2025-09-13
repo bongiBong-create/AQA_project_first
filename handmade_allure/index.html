@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Отчет тестов</title>
+</head>
+<body>
+<h1>Результаты тестов</h1>
+<ul id="results"></ul>
+
+<script>
+fetch('results.json')
+  .then(response => response.json())
+  .then(data => {
+    const ul = document.getElementById('results');
+    data.forEach(test => {
+      const li = document.createElement('li');
+      li.textContent = `${test.name} — ${test.status}`;
+      li.style.color = test.status === 'passed' ? 'green' : 'red';
+      ul.appendChild(li);
+    });
+  });
+</script>
+</body>
+</html>
